@@ -27,7 +27,7 @@
 ## 安装
 
 ```bash
-dsh plugin --profile desktop add github:<your-name>/dsh-companion-memory
+dsh plugin --profile desktop add github:147247586/dsh-companion-memory
 ```
 
 启用插件时需要授予：
