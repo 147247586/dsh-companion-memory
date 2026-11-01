@@ -5,6 +5,7 @@
   "apiVersion": 2,
   "host": "wechatagent",
   "author": "companion-memory contributors",
+  "homepage": "https://github.com/147247586/dsh-companion-memory",
   "description": "本地长期记忆：会衰减、有情绪权重、可主动召回，也支持删除与恢复。",
   "permissions": [
     "storage",
