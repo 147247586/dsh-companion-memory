@@ -1,7 +1,7 @@
 {
   "id": "companion-memory",
   "name": "Companion Memory",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "apiVersion": 2,
   "host": "wechatagent",
   "author": "companion-memory contributors",
@@ -28,7 +28,8 @@
     "recallMaxChars": 900,
     "maxMemories": 400,
     "consolidateAt": "23:50",
-    "autoConsolidate": true
+    "autoConsolidate": true,
+    "enableMood": true
   },
   "configSchema": {
     "recallMaxChars": {
@@ -54,6 +55,11 @@
     "autoConsolidate": {
       "type": "boolean",
       "title": "自动沉淀"
+    },
+    "enableMood": {
+      "type": "boolean",
+      "title": "启用心情与时间状态"
     }
   }
 }
+

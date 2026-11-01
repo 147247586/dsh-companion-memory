@@ -2,6 +2,7 @@ import {
   cleanText, remember, search, forget, restore, listAll,
   queueTurn, pending, clearPending, historyText,
 } from './lib/store.mjs';
+import { moodContext, updateMood } from './lib/mood.mjs';
 
 function memoryBlock(memories, maxChars) {
   if (!memories.length) return '';
@@ -62,13 +63,15 @@ async function beforeContext(ctx) {
   if (!query) return {};
   const matches = await search(ctx, query, 5);
   const max = Math.max(300, Math.min(3000, Number(ctx.config()?.recallMaxChars) || 900));
-  return { context: memoryBlock(matches, max) };
+  const mood = await moodContext(ctx);
+  return { context: [memoryBlock(matches, max), mood].filter(Boolean).join('\n').slice(0, max + 500) };
 }
 
 async function afterResponse(ctx) {
   const assistant = cleanText(ctx.text, 800);
   if (!assistant) return {};
   const incoming = await historyText(ctx);
+  await updateMood(ctx);
   await queueTurn(ctx, `${incoming ? '对方：' + incoming + '\n' : ''}你：${assistant}`);
   return {};
 }

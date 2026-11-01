@@ -21,6 +21,7 @@ function context(overrides = {}) {
       maxMemories: 400,
       autoConsolidate: true,
       consolidateAt: '23:50',
+      enableMood: true,
     }),
     history: { today: async () => [] },
     model: { generate: async () => '[]' },
@@ -77,4 +78,16 @@ test('after-response queues and schedule consolidates', async () => {
   assert.equal(result.ok, true);
   assert.equal(result.count, 1);
   assert.equal((await storage.get('pending')), undefined);
+});
+
+test('mood state is injected and updated', async () => {
+  const { state, storage } = context({
+    history: { today: async () => [{ outgoing: false, text: '今天真的好开心，谢谢你' }] },
+  });
+  const before = await hooks['before-context']({ ...state, message: '在吗' });
+  assert.match(before.context, /当前状态/);
+  await hooks['after-response']({ ...state, text: '我也开心' });
+  const mood = await storage.get('mood');
+  assert.equal(typeof mood.pleasure, 'number');
+  assert.ok(mood.pleasure > 0.55);
 });
