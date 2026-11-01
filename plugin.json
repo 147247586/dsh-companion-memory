@@ -1,0 +1,59 @@
+{
+  "id": "companion-memory",
+  "name": "Companion Memory",
+  "version": "0.1.0",
+  "apiVersion": 2,
+  "host": "wechatagent",
+  "author": "companion-memory contributors",
+  "description": "本地长期记忆：会衰减、有情绪权重、可主动召回，也支持删除与恢复。",
+  "permissions": [
+    "storage",
+    "documents",
+    "history_read",
+    "model_generate",
+    "schedule"
+  ],
+  "requiresHostFeatures": [
+    "actions-v1",
+    "documents-v1",
+    "model-utility-v1",
+    "daily-schedule-v1"
+  ],
+  "requiresAccount": true,
+  "schedule": {
+    "timeSetting": "consolidateAt",
+    "personaScoped": false
+  },
+  "settings": {
+    "recallMaxChars": 900,
+    "maxMemories": 400,
+    "consolidateAt": "23:50",
+    "autoConsolidate": true
+  },
+  "configSchema": {
+    "recallMaxChars": {
+      "type": "integer",
+      "title": "每轮记忆注入上限（字符）",
+      "description": "建议 600–1200。太小会忘，太大压缩聊天上下文。",
+      "minimum": 300,
+      "maximum": 3000
+    },
+    "maxMemories": {
+      "type": "integer",
+      "title": "最多保留记忆条数",
+      "description": "超过后最旧的记忆转为归档，不删除。",
+      "minimum": 50,
+      "maximum": 1000
+    },
+    "consolidateAt": {
+      "type": "string",
+      "title": "每日沉淀时间（HH:MM）",
+      "description": "每天这个时间把待整理聊天提炼为长期记忆。",
+      "maxLength": 5
+    },
+    "autoConsolidate": {
+      "type": "boolean",
+      "title": "自动沉淀"
+    }
+  }
+}

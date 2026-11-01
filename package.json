@@ -1,0 +1,10 @@
+{
+  "name": "dsh-companion-memory",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local companion memory plugin for DSH.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  }
+}
