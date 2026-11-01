@@ -225,14 +225,15 @@ after-response
   → 原模型回复
 ```
 
-这部分**不公开**，原因：
+这部分已独立发布为 [wechat-companion](https://github.com/147247586/wechat-companion)，但它仍然需要：
 
-- 需要登录 Bridge、微信账号和本机 token；
-- 涉及私人音色参考；
-- 依赖 WeChatAgent Hook 和本机路径；
-- 不适合作为通用一键安装插件。
+- 登录 Bridge、微信账号和本机 token；
+- 自己准备私人音色参考；
+- 依赖 WeChatAgent Hook 和本机路径。
 
-所以 GitHub 上的 `dsh-companion-memory` 仍然是“可公开分享的记忆内核”；完整鱼鱼只在私有陪伴层。
+所以它不是一键安装插件。公开的是**陪伴层代码**；私人配置、账号、音色和聊天数据仍然只在本地。
+
+所以 GitHub 上的 `dsh-companion-memory` 是“可公开分享的记忆内核”；完整鱼鱼 = 私有配置 + 公开的 `wechat-companion` 陪伴层。
 
 ## 开发
 
